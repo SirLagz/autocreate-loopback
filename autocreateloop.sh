@@ -4,7 +4,6 @@ IFS=$'\n'
 FILE=$(readlink -f $1)
 echo "Attempting to automatically create loop devices for file: $FILE"
 OUTPUT=$(parted $FILE --script unit b \ print)
-#echo "$OUTPUT"
 LINES=$(echo "$OUTPUT" | wc -l)
 STARTLINE=$(echo "$OUTPUT" | grep -n Number | awk -F ':' ' { print $1 } ')
 TAILLINE=$(echo $LINES-$STARTLINE | bc)
